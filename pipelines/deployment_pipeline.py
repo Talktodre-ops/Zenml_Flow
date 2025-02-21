@@ -174,7 +174,7 @@ def continuous_deployment_pipeline(
     )
     mse, rmse = evaluation(model, x_test, y_test)
     print(f"Available keys in mse artifact: {dir(mse)}")
-    accuracy = 1 / (1 + mse.output_name)
+    accuracy = 1 / (1 + mse)  # ✅ Correct (accesses the actual MSE value)
     deployment_decision = deployment_trigger(
         accuracy=accuracy,
         config=DeploymentTriggerConfig(min_accuracy=min_accuracy)
